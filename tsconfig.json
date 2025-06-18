@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "ES2020",
+    "module": "CommonJS",
+    "types": ["@wdio/globals/types", "node", "mocha"],
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist"
+  },
+  "include": ["globals.d.ts", "tests/**/*.ts"]
+}
+

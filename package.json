@@ -5,11 +5,16 @@
     "test": "wdio run wdio.conf.js"
   },
   "devDependencies": {
-    "@wdio/cli": "^8.29.2",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.0.3",
+    "@wdio/cli": "^8.45.0",
+    "@wdio/globals": "^9.15.0",
     "@wdio/local-runner": "^8.29.2",
     "@wdio/mocha-framework": "^8.29.2",
     "@wdio/spec-reporter": "^8.29.2",
-    "wdio-chromedriver-service": "^8.1.1",
-    "chromedriver": "^137.0.0"
+    "chromedriver": "^137.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "wdio-chromedriver-service": "^8.1.1"
   }
 }
