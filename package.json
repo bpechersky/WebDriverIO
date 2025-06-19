@@ -2,7 +2,7 @@
   "name": "wdio-demoqa",
   "version": "1.0.0",
   "scripts": {
-    "test": "wdio run wdio.conf.js"
+    "test": "wdio run wdio.conf.ts"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
