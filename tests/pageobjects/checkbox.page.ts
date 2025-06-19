@@ -18,10 +18,22 @@ export default class CheckboxPage {
     await browser.url('https://demoqa.com/checkbox');
   }
 
-  async expandAll() {
-    await this.expandAllButton.waitForClickable();
-    await this.expandAllButton.click();
-  }
+async expandAll() {
+  // Remove obstructing iframes (ads)
+  await browser.execute(() => {
+    document.querySelectorAll('iframe').forEach(e => e.remove());
+  });
+
+  // Pause briefly to allow layout to settle
+  await browser.pause(500); // stabilize layout
+
+  // Scroll into view to ensure visibility
+  await this.expandAllButton.scrollIntoView();
+
+  // Click the "Expand all" button
+  await this.expandAllButton.click();
+}
+
 
   async checkDesktop() {
     await this.desktopCheckbox.waitForClickable();

@@ -16,5 +16,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "wdio-chromedriver-service": "^8.1.1"
+  },
+  "dependencies": {
+    "wait-port": "^1.1.0"
   }
 }
