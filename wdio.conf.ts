@@ -1,47 +1,65 @@
-import type { Options } from '@wdio/types';
+import type { Options } from "@wdio/types";
+import fs from "fs";
+import path from "path";
 
 export const config: Options.Testrunner = {
-  baseUrl: 'https://demoqa.com',
-  runner: 'local',
-  specs: ['./tests/specs/**/*.ts'],
-  exclude: ['./tests/specs/**/*.js'],
+  runner: "local",
+  baseUrl: "https://demoqa.com",
+
+  specs: ["./tests/specs/**/*.ts"],
+  exclude: ["./tests/specs/**/*.js"],
 
   maxInstances: 1,
-  capabilities: [{
-    browserName: 'chrome',
-    'goog:chromeOptions': {
-      args: ['--disable-features=InterestCohort', '--disable-blink-features=AutomationControlled', '--blink-settings=imagesEnabled=false']
-    }
-  }],
+  capabilities: [
+    {
+      browserName: "chrome",
+      "goog:chromeOptions": {
+        args: [
+          "--disable-features=InterestCohort",
+          "--disable-blink-features=AutomationControlled",
+          "--blink-settings=imagesEnabled=false",
+        ],
+      },
+    },
+  ],
 
-  logLevel: 'info',
-  framework: 'mocha',
-  reporters: ['spec'],
+  logLevel: "info",
+  framework: "mocha",
+
+  reporters: [
+    "spec",
+    [
+      "allure",
+      {
+        outputDir: "allure-results",
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+      },
+    ],
+  ],
+
   autoCompileOpts: {
     autoCompile: true,
     tsNodeOpts: {
       transpileOnly: true,
-      project: './tsconfig.json',
-    }
+      project: "./tsconfig.json",
+    },
   },
 
   mochaOpts: {
-    ui: 'bdd',
-    timeout: 60000
+    ui: "bdd",
+    timeout: 60000,
   },
+
   onPrepare: function () {
-    const fs = require('fs');
-    const path = require('path');
-
-    const testFiles = fs.readdirSync(path.resolve(__dirname, 'tests/specs'))
-      .filter((file: string) => file.endsWith('.ts'));
-
-
-    console.log('✅ Running spec files:', testFiles);
+    const testFiles = fs
+      .readdirSync(path.resolve(__dirname, "tests/specs"))
+      .filter((file: string) => file.endsWith(".ts"));
+    console.log("✅ Running spec files:", testFiles);
   },
 
   before: async function () {
-    const { browser } = await import('@wdio/globals');
+    const { browser } = await import("@wdio/globals");
     await (browser as any).maximizeWindow();
-  }
+  },
 };
