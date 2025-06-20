@@ -1,17 +1,22 @@
-/// <reference types="@wdio/globals/types" />
-import CheckboxPage from '../pageobjects/checkbox.page';
+import { browser } from '@wdio/globals';
+import RadioPage from '../pageobjects/radio.page';
 
+describe('DemoQA Radio Buttons', () => {
+  before(async () => {
+    await RadioPage.open();
+  });
 
+  it('should select Yes radio and verify result', async () => {
+    await RadioPage.selectYes();
+    await expect(RadioPage.resultText).toHaveText('Yes');
+  });
 
-describe('DemoQA Checkbox (Page Object)', () => {
-  it('should expand tree and select "Desktop" checkbox', async () => {
-    const page = new CheckboxPage();
+  it('should select Impressive radio and verify result', async () => {
+    await RadioPage.selectImpressive();
+    await expect(RadioPage.resultText).toHaveText('Impressive');
+  });
 
-    await page.open();
-    await page.expandAll();
-    await page.checkDesktop();
-
-    const result = await page.getResultText();
-    expect(result).toContain('desktop');
+  it('should verify No radio is disabled', async () => {
+    await expect(RadioPage.noRadio).toBeDisabled();
   });
 });
