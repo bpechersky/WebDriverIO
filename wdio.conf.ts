@@ -1,15 +1,19 @@
 import type { Options } from '@wdio/types';
 
 export const config: Options.Testrunner = {
+  baseUrl: 'https://demoqa.com',
   runner: 'local',
   specs: ['./tests/specs/**/*.ts'],
   exclude: ['./tests/specs/**/*.js'],
 
   maxInstances: 1,
   capabilities: [{
-    maxInstances: 1,
-    browserName: 'chrome'
+    browserName: 'chrome',
+    'goog:chromeOptions': {
+      args: ['--disable-features=InterestCohort', '--disable-blink-features=AutomationControlled', '--blink-settings=imagesEnabled=false']
+    }
   }],
+
   logLevel: 'info',
   framework: 'mocha',
   reporters: ['spec'],

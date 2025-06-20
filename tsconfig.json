@@ -4,7 +4,9 @@
     "module": "CommonJS",
     "types": [
       "@wdio/globals/types",
-      "@wdio/mocha-framework"
+      "@wdio/mocha-framework",
+      "node",
+      "expect-webdriverio"
     ],
     "esModuleInterop": true,
     "strict": true,
